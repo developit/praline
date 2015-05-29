@@ -21,7 +21,7 @@ export function parallel(funcs, callback) {
 	  if (callback) callback(...args);
 	  callback = null;
 	};
-	funcs.forEach( (func, index) => {
+	funcs.forEach( (func, i) => {
 		let args = [];
 		if (Array.isArray(func)) {
 			args = func.slice();
@@ -29,7 +29,7 @@ export function parallel(funcs, callback) {
 		}
 		args.push( (err, data) => {
 			if (err) return done(err);
-			results[index] = data;
+			results[i] = data;
 			if (!--c) done(null, ...results);
 		});
 		func(...args);
