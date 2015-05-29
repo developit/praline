@@ -5,7 +5,7 @@ var gulp = require('gulp'),
 	babel = require('gulp-babel');
 
 gulp.task('babel', function() {
-	return gulp.src('**/*.es6')
+	return gulp.src(['**/*.es6', '!tests/**/*'])
 		.pipe( sourcemaps.init() )
 		.pipe( babel({
 			modules: 'umd',

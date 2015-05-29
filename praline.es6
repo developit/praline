@@ -64,7 +64,7 @@ export function sequence(funcs, callback) {
 		}
 		args.push( (err, data) => {
 			if (err) return callback(err);
-			results[i] = data;
+			results[i-1] = data;
 			if (i<c) next();
 			else callback(null, ...results);
 		});
