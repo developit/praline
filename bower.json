@@ -1,0 +1,33 @@
+{
+  "name": "praline",
+  "version": "0.1.0",
+  "authors": [
+    "Jason Miller <jason@developit.ca>"
+  ],
+  "description": "Parallel task wrapper for Node-style callbacks",
+  "main": "praline.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "parallel",
+    "callbacks",
+    "task"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/developit/praline",
+  "ignore": [
+    "**/.*",
+    "**/*.md",
+    "**/*.json",
+    "**/*.es6",
+    "gulpfile.js",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {}
+}
