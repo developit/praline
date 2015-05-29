@@ -1,6 +1,6 @@
 {
   "name": "praline",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Parallel task wrapper for Node-style callbacks.",
   "main": "praline.js",
   "scripts": {
