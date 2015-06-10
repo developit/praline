@@ -1,4 +1,4 @@
-praline
+praline [![NPM][npm-version-image]][npm-url] [![Bower][bower-image]][bower-url] [![Downloads][npm-downloads-image]][npm-url] [![Build Status][travis-image]][travis-url]
 =======
 
 > Parallel task wrapper for Node-style callbacks
@@ -48,3 +48,12 @@ License
 -------
 
 MIT
+
+
+[npm-url]: https://npmjs.org/package/praline
+[bower-url]: http://bower.io/search/?q=praline
+[travis-url]: http://travis-ci.org/developit/praline
+[npm-version-image]: http://img.shields.io/npm/v/praline.svg?style=flat-square
+[npm-downloads-image]: http://img.shields.io/npm/dm/praline.svg?style=flat-square
+[bower-image]: https://img.shields.io/bower/v/praline.svg?style=flat-square
+[travis-image]: http://img.shields.io/travis/developit/praline.svg?style=flat-square
