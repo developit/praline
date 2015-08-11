@@ -15,6 +15,7 @@
  *		});
  */
 export function parallel(funcs, callback) {
+	if (funcs.length == 0) return callback(null);
 	let c = funcs.length;
 	let results = [];
 	let done = (...args) => {
@@ -52,6 +53,7 @@ export function parallel(funcs, callback) {
  *		});
  */
 export function sequence(funcs, callback) {
+	if (funcs.length == 0) return callback(null);
 	let i = 0;
 	let c = funcs.length;
 	let results = [];
