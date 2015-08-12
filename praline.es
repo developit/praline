@@ -15,12 +15,12 @@
  *		});
  */
 export function parallel(funcs, callback) {
-	if (funcs.length == 0) return callback(null);
 	let c = funcs.length;
+	if (!c) return callback(null);
 	let results = [];
 	let done = (...args) => {
-	  if (callback) callback(...args);
-	  callback = null;
+		if (callback) callback(...args);
+		callback = null;
 	};
 	funcs.forEach( (func, i) => {
 		let args = [];
@@ -53,9 +53,9 @@ export function parallel(funcs, callback) {
  *		});
  */
 export function sequence(funcs, callback) {
-	if (funcs.length == 0) return callback(null);
 	let i = 0;
 	let c = funcs.length;
+	if (!c) return callback(null);
 	let results = [];
 	let next = () => {
 		let func = funcs[i++];

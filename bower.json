@@ -4,7 +4,7 @@
   "authors": [
     "Jason Miller <jason@developit.ca>"
   ],
-  "description": "Parallel task wrapper for Node-style callbacks",
+  "description": "Parallel/sequence task wrapper for Node-style callbacks",
   "main": "praline.js",
   "moduleType": [
     "amd",
@@ -22,12 +22,11 @@
     "**/.*",
     "**/*.md",
     "**/*.json",
-    "**/*.es6",
+    "**/*.es",
     "gulpfile.js",
     "node_modules",
     "bower_components",
     "test",
     "tests"
-  ],
-  "dependencies": {}
+  ]
 }

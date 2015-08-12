@@ -1,11 +1,15 @@
 {
   "name": "praline",
   "version": "0.1.2",
-  "description": "Parallel task wrapper for Node-style callbacks.",
+  "description": "Parallel/sequence task wrapper for Node-style callbacks.",
   "main": "praline.js",
   "scripts": {
-    "build": "gulp",
-    "test": "echo \"No test specified\" && exit 0"
+    "build": "npm run transpile && npm run minify && npm run size",
+    "transpile": "babel *.es -s --out-dir .",
+    "minify": "js=$npm_package_main && uglifyjs -c sequences,dead_code,conditionals,booleans,unused,if_return,join_vars,drop_console -m -o $js --in-source-map ${js}.map --source-map ${js}.map -- $js",
+    "size": "size=$(gzip-size $npm_package_main) && echo \"gzip size: $size / $(pretty-bytes $size)\"",
+    "test": "npm run lint && babel-node tests/index.js",
+    "lint": "jshint **.es"
   },
   "repository": {
     "type": "git",
@@ -19,12 +23,16 @@
   "homepage": "https://github.com/developit/praline",
   "author": "Jason Miller <jason@developit.ca>",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
-    "gulp": "^3.8.11",
-    "gulp-babel": "^5.1.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sourcemaps": "^1.5.2",
-    "gulp-watch": "^4.2.4"
-  }
+    "babel": "^5.4.7",
+    "gzip-size": "^2.0.3",
+    "jshint": "^2.8.0",
+    "pre-commit": "^1.0.7",
+    "pretty-bytes": "^2.0.1",
+    "uglify-js": "^2.4.24"
+  },
+  "pre-commit": [
+    "test",
+    "build"
+  ]
 }
