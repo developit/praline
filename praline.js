@@ -1,2 +1,32 @@
-"use strict";function _toConsumableArray(r){if(Array.isArray(r)){for(var e=0,n=Array(r.length);e<r.length;e++)n[e]=r[e];return n}return Array.from(r)}function parallel(r,e){var n=r.length;if(!n)return e(null);var a=[],l=function(){e&&e.apply(void 0,arguments),e=null};r.forEach(function(r,e){var t=[];Array.isArray(r)&&(t=r.slice(),r=t.shift()),t.push(function(r,t){return r?l(r):(a[e]=t,void(--n||l.apply(void 0,[null].concat(a))))}),r.apply(void 0,_toConsumableArray(t))})}function sequence(r,e){var n=0,a=r.length;if(!a)return e(null);var l=[],t=function o(){var t=r[n++],u=[];Array.isArray(t)&&(u=t.slice(),t=u.shift()),u.push(function(r,t){return r?e(r):(l[n-1]=t,void(a>n?o():e.apply(void 0,[null].concat(l))))}),t.apply(void 0,_toConsumableArray(u))};t()}Object.defineProperty(exports,"__esModule",{value:!0}),exports.parallel=parallel,exports.sequence=sequence,exports["default"]=function(){for(var r=arguments.length,e=Array(r),n=0;r>n;n++)e[n]=arguments[n];return 2===e.length?parallel.apply(void 0,e):void sequence.apply(void 0,_toConsumableArray(e.slice(1)))};
+/**	Execute an Array of tasks in parallel.
+ *	Tasks are functions, or arrays where the first item is a function and the remainder are arguments to pass it.
+ *	All tasks must have Node-style callbacks like `(err, result)`.
+ *	@param {array} tasks		Tasks to run in parallel
+ *	@param {function} callback	Gets passed `(err, ...results)`
+ *
+ *	@example
+ *		parallel([
+ *			taskOne,
+ *			[taskTwo, 'arg1', 'arg2'],
+ *			cb => cb(null, 'data3')
+ *		], (err, t1Result, t2Result, data3) => {
+ *			callback(err, { t1Result, t2Result, data3 });
+ *		});
+ */"use strict";exports.__esModule = true;exports.parallel = parallel;exports.sequence = sequence;function parallel(funcs,callback){var c=funcs.length;if(!c)return callback(null);var results=[];var done=function done(){if(callback)callback.apply(undefined,arguments);callback = null;};funcs.forEach(function(func,i){var args=[];if(Array.isArray(func)){args = func.slice();func = args.shift();}args.push(function(err,data){if(err)return done(err);results[i] = data;if(! --c)done.apply(undefined,[null].concat(results));});func.apply(undefined,args);});} /**	Execute an Array of tasks in order.
+ *	Tasks are functions, or arrays where the first item is a function and the remainder are arguments to pass it.
+ *	All tasks must have Node-style callbacks like `(err, result)`.
+ *	@param {array} tasks		Tasks to run in sequence
+ *	@param {function} callback	Gets passed `(err, ...results)`
+ *
+ *	@example
+ *		sequence([
+ *			taskOne,
+ *			[taskTwo, 'arg1', 'arg2']
+ *		], (err, t1, t2) => {
+ *			callback(err, { t1, t2 });
+ *		});
+ */function sequence(funcs,callback){var i=0;var c=funcs.length;if(!c)return callback(null);var results=[];var next=function next(){var func=funcs[i++];var args=[];if(Array.isArray(func)){args = func.slice();func = args.shift();}args.push(function(err,data){if(err)return callback(err);results[i - 1] = data;if(i < c)next();else callback.apply(undefined,[null].concat(results));});func.apply(undefined,args);};next();} /** Choose your own adventure.
+ *	Parallel: `(tasks, callback)`
+ *	Sequence: `(true, tasks, callback)`
+ */exports["default"] = function(){for(var _len=arguments.length,args=Array(_len),_key=0;_key < _len;_key++) {args[_key] = arguments[_key];}if(args.length === 2)return parallel.apply(undefined,args);sequence.apply(undefined,args.slice(1));};
 //# sourceMappingURL=praline.js.map

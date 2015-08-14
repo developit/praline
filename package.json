@@ -4,12 +4,11 @@
   "description": "Parallel/sequence task wrapper for Node-style callbacks.",
   "main": "praline.js",
   "scripts": {
-    "build": "npm run transpile && npm run minify && npm run size",
+    "build": "npm run transpile && npm run size",
     "transpile": "babel *.es -s --out-dir .",
-    "minify": "js=$npm_package_main && uglifyjs -c sequences,dead_code,conditionals,booleans,unused,if_return,join_vars,drop_console -m -o $js --in-source-map ${js}.map --source-map ${js}.map -- $js",
     "size": "size=$(gzip-size $npm_package_main) && echo \"gzip size: $size / $(pretty-bytes $size)\"",
-    "test": "npm run lint && babel-node tests/index.js",
-    "lint": "jshint **.es"
+    "test": "jshint **.es",
+    "release": "npm run build && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish"
   },
   "repository": {
     "type": "git",
@@ -25,11 +24,10 @@
   "license": "MIT",
   "devDependencies": {
     "babel": "^5.4.7",
-    "gzip-size": "^2.0.3",
+    "gzip-size": "^2.1.0",
     "jshint": "^2.8.0",
     "pre-commit": "^1.0.7",
-    "pretty-bytes": "^2.0.1",
-    "uglify-js": "^2.4.24"
+    "pretty-bytes": "^2.0.1"
   },
   "pre-commit": [
     "test",
