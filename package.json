@@ -5,9 +5,9 @@
   "main": "praline.js",
   "scripts": {
     "build": "npm run transpile && npm run size",
-    "transpile": "babel *.es -s --out-dir .",
+    "transpile": "babel src --source-root src -s -d .",
     "size": "size=$(gzip-size $npm_package_main) && echo \"gzip size: $size / $(pretty-bytes $size)\"",
-    "test": "jshint **.es",
+    "test": "jshint {src,tests}/**.js && mocha --compilers js:babel/register tests/parallel.js",
     "release": "npm run build && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish"
   },
   "repository": {
@@ -23,9 +23,11 @@
   "author": "Jason Miller <jason@developit.ca>",
   "license": "MIT",
   "devDependencies": {
-    "babel": "^5.4.7",
+    "babel": "^5.8.23",
+    "chai": "^3.2.0",
     "gzip-size": "^2.1.0",
     "jshint": "^2.8.0",
+    "mocha": "^2.2.5",
     "pre-commit": "^1.0.7",
     "pretty-bytes": "^2.0.1"
   },

@@ -1,8 +1,5 @@
 {
   "sourceMaps": true,
   "compact": true,
-  "loose": ["all"],
-  "ignore": [
-    "**/*.js"
-  ]
+  "loose": "all"
 }
