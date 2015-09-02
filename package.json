@@ -5,7 +5,7 @@
   "main": "praline.js",
   "scripts": {
     "build": "gulp",
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "mocha tests/** --compilers js:babel/register"
   },
   "repository": {
     "type": "git",
@@ -21,10 +21,13 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
+    "babel": "^5.8.23",
+    "chai": "^3.2.0",
     "gulp": "^3.8.11",
     "gulp-babel": "^5.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.5.2",
-    "gulp-watch": "^4.2.4"
+    "gulp-watch": "^4.2.4",
+    "mocha": "^2.2.5"
   }
 }
