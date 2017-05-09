@@ -23,13 +23,13 @@
   "author": "Jason Miller <jason@developit.ca>",
   "license": "MIT",
   "devDependencies": {
-    "babel": "^5.8.23",
+    "babel": "^6.23.0",
     "chai": "^3.2.0",
-    "gzip-size": "^2.1.0",
+    "gzip-size": "^3.0.0",
     "jshint": "^2.8.0",
-    "mocha": "^2.2.5",
+    "mocha": "^3.3.0",
     "pre-commit": "^1.0.7",
-    "pretty-bytes": "^2.0.1"
+    "pretty-bytes": "^4.0.2"
   },
   "pre-commit": [
     "test",
