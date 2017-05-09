@@ -1,6 +1,8 @@
 praline [![NPM][npm-version-image]][npm-url] [![Bower][bower-image]][bower-url] [![Downloads][npm-downloads-image]][npm-url] [![Build Status][travis-image]][travis-url]
 =======
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/developit/praline.svg)](https://greenkeeper.io/)
+
 > Parallel task wrapper for Node-style callbacks
 
 Tasks are functions, or arrays where the first item is a function and the remainder are arguments to pass it.
